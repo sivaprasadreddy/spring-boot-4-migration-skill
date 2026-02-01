@@ -70,6 +70,9 @@ This skill is cross-referenced against:
 - [Upgrading Spring Boot](https://docs.spring.io/spring-boot/upgrading.html)
 - [Jackson 3 Support in Spring](https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring/)
 - [Moderne OpenRewrite Migration Guide](https://www.moderne.ai/blog/spring-boot-4x-migration-guide)
+- [Road to GA Blog Series](https://spring.io/blog/2025/09/02/road_to_ga_introduction)
+- [Dan Vega — Spring Boot 4 Is Here](https://www.danvega.dev/blog/spring-boot-4-is-here)
+- [Dan Vega — sb4 Sample Project](https://github.com/danvega/sb4)
 
 ## License
 
