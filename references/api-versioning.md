@@ -4,6 +4,22 @@ Spring Framework 7 / Spring Boot 4 introduces first-class, native API
 versioning support. This eliminates the need for custom versioning
 solutions like `RequestCondition` implementations or manual header parsing.
 
+## Contents
+
+- [Core Feature: `version` Attribute](#core-feature-version-attribute)
+- [Versioning Strategies](#versioning-strategies)
+- [Default Version and Optional Versioning](#default-version-and-optional-versioning)
+- [Java Configuration](#java-configuration)
+- [WebFlux Configuration](#webflux-configuration)
+- [Semantic Versioning and Ranges](#semantic-versioning-and-ranges)
+- [Deprecation Handling (RFC 9745 / RFC 8594)](#deprecation-handling-rfc-9745--rfc-8594)
+- [Functional Endpoints](#functional-endpoints)
+- [Client-Side Versioning](#client-side-versioning)
+- [Error Handling](#error-handling)
+- [Testing Versioned APIs](#testing-versioned-apis)
+- [Migration from Custom Versioning](#migration-from-custom-versioning)
+- [Migration Checklist](#migration-checklist)
+
 ## Core Feature: `version` Attribute
 
 All `@RequestMapping` variants support a new `version` attribute:

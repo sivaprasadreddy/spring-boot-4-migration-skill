@@ -4,6 +4,18 @@ Spring Boot 4 consolidates HTTP client support around RestClient
 (synchronous) and WebClient (reactive), introduces declarative HTTP
 interfaces with auto-configuration, and deprecates RestTemplate.
 
+## Contents
+
+- [RestTemplate Deprecation Timeline](#resttemplate-deprecation-timeline)
+- [RestClient (Recommended for Spring MVC)](#restclient-recommended-for-spring-mvc)
+- [WebClient (Recommended for Reactive/WebFlux)](#webclient-recommended-for-reactivewebflux)
+- [Declarative HTTP Interfaces (@HttpExchange)](#declarative-http-interfaces-httpexchange)
+- [Connection Pool Configuration](#connection-pool-configuration)
+- [Observability](#observability)
+- [Feign/OpenFeign Migration](#feignopenfeign-migration)
+- [Testing HTTP Clients](#testing-http-clients)
+- [Migration Checklist](#migration-checklist)
+
 ## RestTemplate Deprecation Timeline
 
 | Version | Status |

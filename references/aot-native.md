@@ -4,6 +4,19 @@ Spring Boot 4 / Spring Framework 7 significantly enhances Ahead-of-Time
 (AOT) processing with faster startup, lower memory usage, and improved
 native image support.
 
+## Contents
+
+- [Key Changes from Boot 3.x](#key-changes-from-boot-3x)
+- [GraalVM 25 Requirement](#graalvm-25-requirement)
+- [BeanRegistrar (New)](#beanregistrar-new)
+- [RuntimeHints API](#runtimehints-api)
+- [Spring Data AOT Repositories](#spring-data-aot-repositories)
+- [AOT Cache (Java 25+)](#aot-cache-java-25)
+- [Testing AOT](#testing-aot)
+- [Troubleshooting](#troubleshooting)
+- [Custom AOT Processors](#custom-aot-processors)
+- [Migration Checklist](#migration-checklist)
+
 ## Key Changes from Boot 3.x
 
 - **GraalVM 25+ required** for native image compilation

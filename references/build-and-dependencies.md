@@ -1,5 +1,18 @@
 # Build and Dependencies Reference
 
+## Contents
+
+- [Version Requirements](#version-requirements)
+- [Gradle Version Support](#gradle-version-support)
+- [Build Plugin Updates](#build-plugin-updates)
+- [Deprecated Starter Renames](#deprecated-starter-renames)
+- [Removed Features -- Remove These Dependencies](#removed-features--remove-these-dependencies)
+- [Classic Starters (Temporary Stopgap)](#classic-starters-temporary-stopgap)
+- [Complete Modular Starter Mapping](#complete-modular-starter-mapping)
+- [Dependency Management Removals](#dependency-management-removals)
+- [Kotlin Serialization](#kotlin-serialization)
+- [Jersey + Jackson](#jersey--jackson)
+
 ## Version Requirements
 
 - Java 17+ (Java 21+ recommended, Java 25 supported)

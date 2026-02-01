@@ -2,6 +2,16 @@
 
 Package relocations, removed APIs, and renamed classes in Boot 4 / Framework 7.
 
+## Contents
+
+- [Package Relocations](#package-relocations)
+- [Removed APIs](#removed-apis)
+- [spring-jcl Removal](#spring-jcl-removal)
+- [Auto-Configuration Public Members Removed](#auto-configuration-public-members-removed)
+- [SSL Health Changes](#ssl-health-changes)
+- [@PropertyMapping Relocation](#propertymapping-relocation)
+- [Module Package Organization](#module-package-organization)
+
 ## Package Relocations
 
 ### Spring Boot

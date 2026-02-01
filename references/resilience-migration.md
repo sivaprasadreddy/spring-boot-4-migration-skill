@@ -3,6 +3,16 @@
 Spring Framework 7 introduces native retry and concurrency limiting
 in spring-core, replacing the need for Spring Retry in most cases.
 
+## Contents
+
+- [Key Changes Summary](#key-changes-summary)
+- [Native Retry (Spring Framework 7)](#native-retry-spring-framework-7)
+- [Concurrency Limiting (Bulkhead)](#concurrency-limiting-bulkhead)
+- [Migration from Spring Retry](#migration-from-spring-retry)
+- [When to Keep Resilience4j](#when-to-keep-resilience4j)
+- [Testing Resilience](#testing-resilience)
+- [Migration Checklist](#migration-checklist)
+
 ## Key Changes Summary
 
 1. `@Retryable` and `@ConcurrencyLimit` now in `org.springframework.resilience.annotation`

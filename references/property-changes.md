@@ -2,6 +2,13 @@
 
 All property key renames, value changes, and removals from Boot 3.x → 4.0.
 
+## Contents
+
+- [Property Key Renames](#property-key-renames)
+- [Property Value Changes](#property-value-changes)
+- [Properties in Annotations](#properties-in-annotations)
+- [Where to Check](#where-to-check)
+
 ## Property Key Renames
 
 ### Jackson Properties

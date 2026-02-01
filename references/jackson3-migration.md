@@ -2,6 +2,21 @@
 
 Jackson 3 is the default JSON library in Spring Boot 4.0.
 
+## Contents
+
+- [Group ID Changes](#group-id-changes)
+- [Package Changes](#package-changes)
+- [Spring Boot Class Renames](#spring-boot-class-renames)
+- [Core API Changes](#core-api-changes)
+- [Jackson 2 Compatibility Module](#jackson-2-compatibility-module)
+- [Spring Security Jackson Changes](#spring-security-jackson-changes)
+- [Spring Integration Jackson Changes](#spring-integration-jackson-changes)
+- [Search and Replace Patterns](#search-and-replace-patterns)
+- [Maven Dependency Changes](#maven-dependency-changes)
+- [Kotlin Module Changes](#kotlin-module-changes)
+- [Auto-Module Detection](#auto-module-detection)
+- [Automated Migration with OpenRewrite](#automated-migration-with-openrewrite)
+
 ## Group ID Changes
 
 | Jackson 2 Group ID | Jackson 3 Group ID |

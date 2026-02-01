@@ -4,6 +4,23 @@ Spring Boot 4 significantly restructures observability (metrics, tracing,
 logging) into modular components and introduces first-class OpenTelemetry
 support decoupled from Actuator.
 
+## Contents
+
+- [Key Changes Summary](#key-changes-summary)
+- [Module Renames](#module-renames)
+- [New Modular Observability Modules](#new-modular-observability-modules)
+- [Starters](#starters)
+- [Migrating from Boot 3 Observability Setup](#migrating-from-boot-3-observability-setup)
+- [Decoupled from Actuator](#decoupled-from-actuator)
+- [OTLP Configuration Properties](#otlp-configuration-properties)
+- [Observation Annotations](#observation-annotations)
+- [Observation Configuration](#observation-configuration)
+- [Auto-Instrumentation](#auto-instrumentation)
+- [Three Integration Approaches](#three-integration-approaches)
+- [Brave (Zipkin) to OpenTelemetry Migration](#brave-zipkin-to-opentelemetry-migration)
+- [Context Propagation](#context-propagation)
+- [Migration Checklist](#migration-checklist)
+
 ## Key Changes Summary
 
 1. Observability modules renamed and split into dedicated artifacts

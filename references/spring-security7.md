@@ -2,6 +2,13 @@
 
 Spring Boot 4.0 ships with Spring Security 7.0.
 
+## Contents
+
+- [Preparation Strategy](#preparation-strategy)
+- [Breaking Changes](#breaking-changes)
+- [Common Migration Patterns](#common-migration-patterns)
+- [Checklist](#checklist)
+
 ## Preparation Strategy
 
 Security 6.5 provides preparation steps that let you adopt 7.0 changes

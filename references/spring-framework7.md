@@ -2,6 +2,20 @@
 
 Spring Boot 4.0 uses Spring Framework 7.x.
 
+## Contents
+
+- [Module Removal](#module-removal)
+- [Annotation Changes](#annotation-changes)
+- [Web Changes](#web-changes)
+- [Spring Retry → Core Resilience](#spring-retry--core-resilience)
+- [Testing Changes](#testing-changes)
+- [Jackson](#jackson)
+- [Hibernate ORM 7.1](#hibernate-orm-71)
+- [HTTP Interfaces](#http-interfaces)
+- [Programmatic Bean Registration](#programmatic-bean-registration)
+- [SpEL Improvements](#spel-improvements)
+- [API Versioning (New Feature)](#api-versioning-new-feature)
+
 ## Module Removal
 
 ### spring-jcl

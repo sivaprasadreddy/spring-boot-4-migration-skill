@@ -6,6 +6,20 @@ graph: a mandatory Day-1 baseline using compatibility bridges, followed by
 independent tracks that can be completed in any order by different teams on
 different timelines.
 
+## Contents
+
+- [Migration Dependency Graph](#migration-dependency-graph)
+- [Level 0: Day-1 Baseline (One PR)](#level-0-day-1-baseline-one-pr)
+- [Track A: Modular Starters](#track-a-modular-starters)
+- [Track B: Jackson 3](#track-b-jackson-3)
+- [Track C: Properties](#track-c-properties)
+- [Track D: Security 7](#track-d-security-7)
+- [Track E: Testing](#track-e-testing)
+- [Track F: Framework 7](#track-f-framework-7)
+- [Bridge Deprecation Timeline (Estimated)](#bridge-deprecation-timeline-estimated)
+- [Enterprise Rollout Strategy](#enterprise-rollout-strategy)
+- [Track Dependency Summary Table](#track-dependency-summary-table)
+
 ## Migration Dependency Graph
 
 ```

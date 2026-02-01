@@ -6,6 +6,15 @@ and notable features for each Spring Boot 4.x minor version beyond 4.0.
 When upgrading to a new minor version, review the relevant section below
 AND consult the official release notes for the target version.
 
+## Contents
+
+- [How to Use This File](#how-to-use-this-file)
+- [General Minor Version Upgrade Process](#general-minor-version-upgrade-process)
+- [Spring Boot 4.1](#spring-boot-41)
+- [Spring Boot 4.2](#spring-boot-42)
+- [Template for Future Versions](#template-for-future-versions)
+- [Official Sources for Minor Version Changes](#official-sources-for-minor-version-changes)
+
 ## How to Use This File
 
 1. Find the section for your **target** version.

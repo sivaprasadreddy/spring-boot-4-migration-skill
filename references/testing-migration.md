@@ -1,5 +1,16 @@
 # Testing Migration Reference
 
+## Contents
+
+- [@MockBean / @SpyBean → @MockitoBean / @MockitoSpyBean](#mockbean--spybean--mockitobean--mockitospybean)
+- [HTTP Test Client Changes](#http-test-client-changes)
+- [Testcontainers 2.0](#testcontainers-20)
+- [JUnit 6](#junit-6)
+- [Test Starter Dependencies](#test-starter-dependencies)
+- [Context Caching Improvement](#context-caching-improvement)
+- [@PropertyMapping Relocation](#propertymapping-relocation)
+- [Checklist](#checklist)
+
 ## @MockBean / @SpyBean → @MockitoBean / @MockitoSpyBean
 
 `@MockBean` and `@SpyBean` were deprecated in Spring Boot 3.4 and
