@@ -69,7 +69,7 @@ automate the mechanical changes. The Moderne platform and OpenRewrite
 project provide recipes for:
 
 - Jackson 2 → 3 package/import migration: `org.openrewrite.java.jackson.UpgradeJackson_2_3`
-- Spring Boot 4.x upgrade: `org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5` (prepare step), then Boot 4 recipes as they become available
+- Spring Boot 4.x upgrade: `org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5` (prepare step), then `UpgradeSpringBoot_4_0`
 - `@MockBean` → `@MockitoBean` annotation replacement
 
 Run OpenRewrite FIRST to handle bulk find-replace operations, then use
@@ -261,6 +261,7 @@ them. Check the "New and Noteworthy" section of each release's notes.
 
 Cross-reference with these authoritative resources:
 
+- GA Announcement: https://spring.io/blog/2025/11/20/spring-boot-4-0-0-available-now
 - Migration Guide: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
 - Release Notes: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes
 - Upgrading Docs: https://docs.spring.io/spring-boot/upgrading.html

@@ -65,6 +65,7 @@ scripts/
 
 This skill is cross-referenced against:
 
+- [Spring Boot 4.0.0 GA Announcement](https://spring.io/blog/2025/11/20/spring-boot-4-0-0-available-now)
 - [Spring Boot 4.0 Migration Guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide)
 - [Spring Boot 4.0 Release Notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes)
 - [Upgrading Spring Boot](https://docs.spring.io/spring-boot/upgrading.html)
