@@ -9,8 +9,10 @@ description: >
   Spring Framework 7, Hibernate 7.1, JUnit 6, Testcontainers 2,
   observability (OpenTelemetry, Micrometer, Actuator, distributed tracing),
   property key/value changes, package relocations, deprecated API removal,
-  testing infrastructure updates, and bridge removal timelines tied to
-  minor versions. Supports both all-at-once migration AND gradual
+  testing infrastructure updates, bridge removal timelines tied to
+  minor versions, API versioning, HTTP interfaces and clients,
+  AOT/native image processing, JSpecify nullability, and resilience
+  migration (retry, concurrency limiting). Supports both all-at-once migration AND gradual
   incremental upgrade using compatibility bridges. Covers Java and Kotlin
   projects using Maven or Gradle (Groovy/Kotlin DSL).
   Trigger on: "upgrade to Spring Boot 4", "migrate to Boot 4",
@@ -346,8 +348,12 @@ them. Check the "New and Noteworthy" section of each release's notes.
 | `references/spring-security7.md` | Phase 6 / Track D — Security 7 breaking changes and DSL migration |
 | `references/testing-migration.md` | Phase 7 / Track E — MockBean, Testcontainers 2, JUnit 6, RestTestClient |
 | `references/spring-framework7.md` | Phase 8 / Track F — Framework 7 changes, JSpecify, path matching |
+| `references/http-clients.md` | HTTP clients — RestClient, WebClient, @HttpExchange, Feign migration, RestTestClient |
+| `references/api-versioning.md` | API versioning — strategies, semantic ranges, client-side, deprecation, testing |
+| `references/resilience-migration.md` | Resilience — Spring Retry → Framework 7, @Retryable, @ConcurrencyLimit, Resilience4j |
+| `references/aot-native.md` | AOT/Native — BeanRegistrar, RuntimeHints, Spring Data AOT, GraalVM 25, AOT Cache |
 | `references/minor-version-changes.md` | 4.x minor upgrades — changes per minor version, bridge removals, new features |
-| `scripts/verify_migration.sh` | Phase 8 — bridge-aware verification with PASS/FAIL/WARN/BRIDGE |
+| `scripts/verify_migration.sh` | Phase 9 — bridge-aware verification with PASS/FAIL/WARN/BRIDGE |
 
 ## Official Sources
 

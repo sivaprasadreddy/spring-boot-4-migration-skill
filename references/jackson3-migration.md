@@ -38,44 +38,138 @@ Jackson 3 is the default JSON library in Spring Boot 4.0.
 
 ### ObjectMapper → JsonMapper
 
-Jackson 3 uses `JsonMapper` as the primary entry point:
+Jackson 3 uses `JsonMapper` as the primary entry point. `JsonMapper` is
+**immutable** after building — configuration is locked.
 
 ```java
-// Jackson 2
+// Jackson 2 — mutable
 ObjectMapper mapper = new ObjectMapper();
 mapper.registerModule(new JavaTimeModule());
-
-// Jackson 3
-JsonMapper mapper = JsonMapper.builder()
-    .addModule(new JavaTimeModule())
-    .build();
-```
-
-`ObjectMapper` still exists in Jackson 3 but `JsonMapper` is preferred.
-
-### Builder Pattern
-
-Jackson 3 uses immutable builders:
-
-```java
-// Jackson 2
-ObjectMapper mapper = new ObjectMapper();
 mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-// Jackson 3
+// Jackson 3 — immutable builder
 JsonMapper mapper = JsonMapper.builder()
     .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+    .build();
+// Use mapper.rebuild() to create a new builder from existing instance
+```
+
+### Built-in Modules (No Registration Needed)
+
+Jackson 3 merges these into jackson-databind — do NOT register them:
+- `ParameterNamesModule`
+- `Jdk8Module`
+- `JavaTimeModule` (JSR310) — built-in as of 3.0.0-rc3
+
+```java
+// Jackson 2 — required
+ObjectMapper mapper = new ObjectMapper()
+    .registerModule(new ParameterNamesModule())
+    .registerModule(new Jdk8Module())
+    .registerModule(new JavaTimeModule());
+
+// Jackson 3 — all built-in, just build
+JsonMapper mapper = JsonMapper.builder().build();
+```
+
+### StreamReadFeature / StreamWriteFeature
+
+Jackson 2's `JsonParser.Feature` and `JsonGenerator.Feature` are
+**removed** in Jackson 3. Use the replacements:
+
+| Removed (Jackson 2) | Replacement (Jackson 3) |
+|---------------------|------------------------|
+| `JsonParser.Feature.*` | `StreamReadFeature.*` (format-agnostic) or `JsonReadFeature.*` (JSON-specific) |
+| `JsonGenerator.Feature.*` | `StreamWriteFeature.*` (format-agnostic) or `JsonWriteFeature.*` (JSON-specific) |
+
+```java
+// Jackson 3
+JsonFactory f = JsonFactory.builder()
+    .disable(StreamWriteFeature.AUTO_CLOSE_TARGET)
+    .enable(JsonReadFeature.ALLOW_TRAILING_COMMA)
     .build();
 ```
 
 ### Default Behavior Changes
 
-Jackson 3 has different defaults than Jackson 2. Key differences:
-- Date/time serialization defaults may differ
-- Some `SerializationFeature`/`DeserializationFeature` defaults changed
+**These are the most impactful changes — they silently break tests:**
+
+| Feature | Jackson 2 Default | Jackson 3 Default |
+|---------|------------------|------------------|
+| `WRITE_DATES_AS_TIMESTAMPS` | `true` (timestamps) | `false` (ISO-8601 strings) |
+| `FAIL_ON_TRAILING_TOKENS` | `false` | `true` |
+| `SORT_PROPERTIES_ALPHABETICALLY` | `false` | `true` |
+| `ALLOW_FINAL_FIELDS_AS_MUTATORS` | enabled | disabled |
+| `DEFAULT_VIEW_INCLUSION` | enabled | disabled |
+| Locale serialization | `zh_CN` | `zh-CN` (LanguageTag format) |
 
 Set `spring.jackson.use-jackson2-defaults=true` to get Jackson 2-compatible
-defaults in Boot 4.
+defaults in Boot 4. Or programmatically:
+
+```java
+@Bean
+public JsonMapperBuilderCustomizer jackson2Compatible() {
+    return builder -> builder.configureForJackson2();
+}
+```
+
+### JsonNode Changes
+
+**Critical behavioral changes:**
+
+| Jackson 2 | Jackson 3 |
+|-----------|-----------|
+| `TextNode` | Renamed to `StringNode` |
+| `JsonNode.textValue()` | `JsonNode.stringValue()` — throws on NullNode |
+| `JsonNode.asText()` | `JsonNode.asString()` — returns `""` for null (was `null`) |
+| `JsonNode.fields()` | **Removed** — use `JsonNode.properties()` |
+| `JsonNodeFactory.textNode()` | `JsonNodeFactory.stringNode()` |
+| `TreeNode.isContainerNode()` | `TreeNode.isContainer()` |
+
+**Null handling change (critical):**
+```java
+// Jackson 2: returns null for NullNode
+node.get("password").textValue()  // → null
+
+// Jackson 3: returns "" for NullNode
+node.get("password").asString()   // → "" (empty string!)
+// Use stringValue() which throws JsonNodeException for NullNode
+```
+
+### Serializer/Deserializer Renames
+
+| Jackson 2 | Jackson 3 |
+|-----------|-----------|
+| `JsonSerializer<T>` | `ValueSerializer<T>` |
+| `JsonDeserializer<T>` | `ValueDeserializer<T>` |
+| `SerializerProvider` | `SerializationContext` |
+| `JsonSerializable` | `JacksonSerializable` |
+| `Module` | `JacksonModule` |
+| `ResolvableDeserializer` | Removed — `resolve()` now in `ValueDeserializer` |
+| `ResolvableSerializer` | Removed — `resolve()` now in `ValueSerializer` |
+
+### Polymorphic Type Handling (Security)
+
+Jackson 3 tightens polymorphic deserialization security:
+- **Avoid** `@JsonTypeInfo(use = Id.CLASS)` — classname-based is a security risk
+- **Use** `@JsonTypeInfo(use = Id.NAME)` with `@JsonSubTypes`
+- Configure `PolymorphicTypeValidator` for any remaining classname-based usage
+
+### Removed MapperFeatures
+
+- `USE_STD_BEAN_NAMING`
+- `AUTO_DETECT_CREATORS`, `AUTO_DETECT_FIELDS`, `AUTO_DETECT_GETTERS`, `AUTO_DETECT_IS_GETTERS`, `AUTO_DETECT_SETTERS`
+
+New: `DETECT_PARAMETER_NAMES` — allows disabling parameter-names detection.
+
+### Accessor Naming
+
+Tighter rules: no leading lower-case or non-letter character for
+getters/setters. Review custom accessors.
+
+### Java 17 Minimum
+
+Jackson 3 requires Java 17+ (was Java 8 for Jackson 2).
 
 ### Custom Serializers/Deserializers
 
@@ -207,6 +301,24 @@ For bulk migration, apply these find/replace operations:
 
 Note: If using Boot's starter (`spring-boot-starter-jackson`), these are
 managed automatically — no explicit declaration needed.
+
+## Kotlin Module Changes
+
+```xml
+<!-- Jackson 2 -->
+<groupId>com.fasterxml.jackson.module</groupId>
+<artifactId>jackson-module-kotlin</artifactId>
+
+<!-- Jackson 3 -->
+<groupId>tools.jackson.module</groupId>
+<artifactId>jackson-module-kotlin</artifactId>
+```
+
+Key behavioral changes:
+- `isRequired` from kotlin-module no longer overrides
+  `JacksonAnnotationIntrospector` — `@JsonProperty(required = true)` for
+  nullable parameters is now determined as required
+- `FAIL_ON_TRAILING_TOKENS` enabled by default (validates no extra content)
 
 ## Auto-Module Detection
 

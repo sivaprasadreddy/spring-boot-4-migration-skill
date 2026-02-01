@@ -299,6 +299,50 @@ if grep -rqn "import org.springframework.lang.Nullable" src/ 2>/dev/null; then
     warn "spring.lang.Nullable found — migrate to org.jspecify.annotations.Nullable (Track F)"
 fi
 
+# --- Resilience / Spring Retry ---
+if grep -rqn "import org.springframework.retry.annotation.Retryable" src/ 2>/dev/null; then
+    warn "Spring Retry @Retryable found — migrate to org.springframework.resilience.annotation.Retryable"
+fi
+if grep -rqn "import org.springframework.retry.annotation.EnableRetry" src/ 2>/dev/null; then
+    warn "@EnableRetry found — replace with @EnableResilientMethods"
+fi
+if grep -rqn "spring-retry" pom.xml build.gradle build.gradle.kts 2>/dev/null; then
+    warn "spring-retry dependency found — Spring Retry is in maintenance mode, migrate to Framework 7 core retry"
+fi
+
+# --- HTTP Interfaces ---
+if grep -rqn "@HttpServiceClient" src/ 2>/dev/null; then
+    fail "@HttpServiceClient found — annotation removed before Boot 4 final release, use @ImportHttpServices instead"
+fi
+if grep -rqn "HttpServiceProxyFactory.builderFor" src/ 2>/dev/null; then
+    warn "Manual HttpServiceProxyFactory found — consider @ImportHttpServices for Boot 4 auto-configuration"
+fi
+if grep -rqn "TestRestTemplate" src/test/ 2>/dev/null; then
+    warn "TestRestTemplate found — consider migrating to RestTestClient with @AutoConfigureRestTestClient"
+fi
+
+# --- Jackson 3 Detailed ---
+if grep -rqn "JsonParser.Feature\." src/ 2>/dev/null; then
+    fail "JsonParser.Feature found — removed in Jackson 3, use StreamReadFeature or JsonReadFeature"
+fi
+if grep -rqn "JsonGenerator.Feature\." src/ 2>/dev/null; then
+    fail "JsonGenerator.Feature found — removed in Jackson 3, use StreamWriteFeature or JsonWriteFeature"
+fi
+if grep -rqn "\.fields()" src/ 2>/dev/null | grep -q "JsonNode\|ObjectNode"; then
+    warn "JsonNode.fields() found — removed in Jackson 3, use .properties() instead"
+fi
+if grep -rqn "\.textValue()" src/ 2>/dev/null; then
+    warn ".textValue() found — renamed to .stringValue() in Jackson 3 (different null behavior)"
+fi
+
+# --- JSpecify ---
+if grep -rqn "@NonNullApi" src/ 2>/dev/null; then
+    warn "@NonNullApi found — replace with @NullMarked from org.jspecify.annotations"
+fi
+if grep -rqn "@NonNullFields" src/ 2>/dev/null; then
+    warn "@NonNullFields found — replace with @NullMarked from org.jspecify.annotations"
+fi
+
 # ================================================================
 # SECTION 3: BUILD VERIFICATION
 # ================================================================

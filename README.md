@@ -6,10 +6,10 @@ A comprehensive [Claude Code skill](https://code.claude.com/docs/en/skills) for 
 
 When installed, this skill gives Claude Code deep knowledge of every breaking change in Spring Boot 4.x and guides you through migration step-by-step. It supports:
 
-- **Two migration strategies**: All-at-once (8 sequential phases) or gradual upgrade (Day-1 baseline with 6 independent tracks)
+- **Two migration strategies**: All-at-once (9 sequential phases) or gradual upgrade (Day-1 baseline with 6 independent tracks)
 - **Compatibility bridges**: `spring-boot-starter-classic`, `spring-boot-jackson2`, `spring-security-access` for incremental adoption
 - **Minor version tracking**: Bridge removal timelines, deprecation promotions, and new features for 4.1, 4.2, and beyond
-- **Comprehensive coverage**: Build files, modular starters, Jackson 3, properties, package relocations, Spring Security 7, testing (MockitoBean, Testcontainers 2, JUnit 6), Spring Framework 7, Hibernate 7.1
+- **Comprehensive coverage**: Build files, modular starters, Jackson 3, properties, package relocations, Spring Security 7, testing (MockitoBean, Testcontainers 2, JUnit 6), Spring Framework 7, Hibernate 7.1, observability (OpenTelemetry, Micrometer, Actuator), API versioning, HTTP interfaces and clients, AOT/native image, JSpecify nullability, resilience (retry, concurrency limiting)
 - **Verification script**: Bridge-aware PASS/FAIL/WARN/BRIDGE checks
 - **Enterprise rollout**: Wave-based strategy for organizations with many services
 
@@ -52,6 +52,10 @@ references/
   testing-migration.md                # MockitoBean, Testcontainers 2, JUnit 6, RestTestClient
   spring-framework7.md                # JSpecify, path matching, resilience, Hibernate 7.1
   observability-migration.md          # OpenTelemetry, Micrometer, OTLP, Actuator decoupling
+  http-clients.md                     # RestClient, WebClient, @HttpExchange, Feign migration
+  api-versioning.md                   # Native API versioning strategies, semantic ranges, testing
+  resilience-migration.md             # Spring Retry → Framework 7, @Retryable, @ConcurrencyLimit
+  aot-native.md                       # AOT processing, BeanRegistrar, RuntimeHints, GraalVM 25
   minor-version-changes.md            # 4.x minor version changes, bridge removals, upgrade checklists
 scripts/
   verify_migration.sh                 # Bridge-aware verification (PASS/FAIL/WARN/BRIDGE)
