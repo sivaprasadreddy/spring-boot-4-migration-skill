@@ -266,3 +266,6 @@ Cross-reference with these authoritative resources:
 - Upgrading Docs: https://docs.spring.io/spring-boot/upgrading.html
 - Jackson 3 in Spring: https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring/
 - OpenRewrite Recipes: https://www.moderne.ai/blog/spring-boot-4x-migration-guide
+- Road to GA blog series: https://spring.io/blog/2025/09/02/road_to_ga_introduction
+- Dan Vega walkthrough: https://www.danvega.dev/blog/spring-boot-4-is-here
+- Dan Vega sample project: https://github.com/danvega/sb4
