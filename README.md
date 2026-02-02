@@ -85,6 +85,56 @@ configuration is required. The "6 independent tracks" mentioned in the gradual
 upgrade strategy are conceptual work areas that teams can tackle in parallel,
 not separate agents. Install the skill and Claude Code uses it as one unit.
 
+### What are the minimum toolchain versions?
+
+Java 17+, Kotlin 2.2+, Maven 3.6.3+, and Gradle 8.14+ (or 9.x). The skill
+checks these before migration begins and provides upgrade commands if any are
+below the minimum. Java 21 and Maven 3.9.x are recommended.
+
+### My project is on Spring Boot 2.x. Can I use this skill?
+
+Not directly. This skill covers 3.x → 4.x migration. You need to migrate to
+Spring Boot 3.5.x first (the latest 3.x release), then use this skill to go
+to 4.x.
+
+### Should I use the all-at-once or gradual strategy?
+
+Use **gradual** if you have a large codebase, multiple teams, many services, or
+need phased rollouts. The gradual strategy uses compatibility bridges so you can
+get running on Boot 4 quickly and complete the full migration in independent
+tracks over time. Use **all-at-once** for small projects or single-team
+ownership where you can do all 9 phases in one effort.
+
+### Does this work with Kotlin projects?
+
+Yes. The skill covers both Java and Kotlin. Kotlin-specific changes include
+upgrading to Kotlin 2.2 baseline, JSpecify nullability integration, and the
+new `spring-boot-starter-kotlin-serialization` module.
+
+### Can I use OpenRewrite to automate parts of the migration?
+
+Yes. The skill recommends running OpenRewrite recipes first to handle bulk
+mechanical changes (import renames, `@MockBean` → `@MockitoBean`, Jackson
+package migration), then using the skill's phases for the remaining manual
+work like Security DSL rewrites and behavioral changes.
+
+### Does this skill handle minor version upgrades (e.g., 4.0 → 4.1)?
+
+Yes. The skill includes a minor version upgrade workflow and a reference file
+(`references/minor-version-changes.md`) tracking changes per minor version,
+including bridge removals, deprecation promotions, and new features.
+
+### What are compatibility bridges?
+
+Bridges are first-class Spring Boot modules that restore Boot 3.x behavior on
+Boot 4.x, giving you time to complete the full migration:
+- `spring-boot-starter-classic` — restores monolithic auto-configuration
+- `spring-boot-jackson2` — keeps Jackson 2 code working alongside Boot 4
+- `spring-security-access` — bridges legacy `AccessDecisionManager`/`Voter`
+
+These are temporary — check `references/minor-version-changes.md` for removal
+timelines before upgrading minor versions.
+
 ## License
 
 Apache 2.0
